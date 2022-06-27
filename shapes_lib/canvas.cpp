@@ -33,7 +33,6 @@ namespace shapes
             return false;
         }
         auto ret = pixMap.unset((*it)->getPosition(), (*it)->getPixMap());
-        pixMap.print();
         if (ret)
         {
             (*it)->setParent(nullptr);
@@ -45,6 +44,7 @@ namespace shapes
     void Canvas::update()
     {
         pixMap.clear();
+        pixMap.print();
         for (const auto &shape : shapes)
         {
             pixMap.set(shape->getPosition(), shape->getPixMap());

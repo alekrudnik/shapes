@@ -13,7 +13,7 @@ int main(int, char **)
 
     std::cout << "Test start" << std::endl;
 
-    Canvas canvas(100, 100);
+    Canvas canvas(100, 200);
 
     auto rect = Rectangle::create({10, 5}, {10, 20}, 5);
     auto triang = Triangle::create({30, 5}, 10, 7);
@@ -78,6 +78,11 @@ int main(int, char **)
     }
     triang->setColor(3);
 
+    if(!circ->move({50,5}))
+    {
+        std::cout << "Test Failed" << std::endl;
+        return -1;
+    }
 
     canvas.update();
     canvas.getPixMap().print();

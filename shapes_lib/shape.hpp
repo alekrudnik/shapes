@@ -41,11 +41,7 @@ namespace shapes
             return attributes.size;
         }
 
-        bool move(Point position) override
-        {
-            // TODO:: do
-            return true;
-        }
+        bool move(Point position) override;
 
         void setHandle(ShapeHandle handle_) override
         {

@@ -12,7 +12,7 @@ namespace shapes
     class Canvas : public AbstractCanvas
     {
         public:
-        Canvas(Height h, Length l) : pixMap(h,l)
+        Canvas(Height l, Length h) : pixMap(l,h)
         {} 
 
         OptionalShapeHandle addShape(AbstractShapePtr shape) override;

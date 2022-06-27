@@ -90,4 +90,23 @@ namespace shapes
     {
         return true;
     }
+
+    bool Shape::move(Point position)
+    {
+        auto positionCopy = attributes.position;
+        auto applyChanges = [this]()
+        {
+            setBoundingBox();
+        };
+        attributes.position = position;
+        applyChanges();
+        if (parent && checkCollision(parent->GetShapes(), parent->getSize()))
+        {
+            attributes.position = positionCopy;
+            applyChanges();
+            return false;
+        }
+
+        return true;
+    }
 }

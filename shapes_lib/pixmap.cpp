@@ -4,7 +4,7 @@
 
 namespace shapes
 {
-    PixMap::PixMap(Height h, Length l) : size{h, l}
+    PixMap::PixMap(Height l, Length h) : size{l, h}
     {
         array = new Color[l*h];
         
@@ -15,12 +15,13 @@ namespace shapes
     }
     PixMap::~PixMap()
     {
-        delete array;
+        delete[] array;
+        array = nullptr;
     }
 
     void PixMap::clear()
     {
-        memset(array, 0, size.h*size.l);
+        std::fill(array, array + size.l*size.h, 1);
     }
 
     const Color &PixMap::at(XCoord x, YCoord y) const
@@ -28,7 +29,7 @@ namespace shapes
         if ((x > size.l) || (y > size.h))
             throw std::out_of_range("out of range");
 
-        return array[x * size.l + y];
+        return array[x * size.h + y];
     }
 
     Color &PixMap::at(XCoord x, YCoord y)
@@ -42,7 +43,7 @@ namespace shapes
         {
             for (size_t j = 0; j < size.l; j++)
             {
-                std::cout << at(j,i);
+                std::cout <<std::hex<< int(at(j,i));
             }
             std::cout << std::endl;
         }

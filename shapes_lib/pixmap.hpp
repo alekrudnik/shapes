@@ -22,17 +22,12 @@ namespace shapes
         PixMap(const PixMap& other) : PixMap(other.getSize())
         {
         }
-        PixMap &operator=(const PixMap &other)
+        PixMap &operator=(PixMap other) noexcept
         {
-            if (this == &other)
-                return *this;
-
-            delete this->array;
+            std::swap(array, other.array);
             this->size = other.size;
             this->xMax = other.xMax;
             this->yMax = other.yMax;
-            this->array = new Color[this->size.l*this->size.h];
-            memcpy(this->array, other.array, this->size.l*this->size.h);
             return *this;
         }
 
