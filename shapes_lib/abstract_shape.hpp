@@ -22,9 +22,7 @@ namespace shapes
         // returns generated pixMap
         virtual const PixMap& getPixMap() = 0;
 
-        virtual bool setSize(Height h, Length l) = 0;
-        virtual bool setHeight(Height h) = 0;
-        virtual bool setLength(Length l) = 0;
+        virtual bool setSize(Length l, Height h) = 0;
         virtual Size getSize() const = 0;
 
         virtual Color getColor() const = 0;

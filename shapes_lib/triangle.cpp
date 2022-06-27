@@ -15,44 +15,9 @@ namespace shapes
         setPixMap();
     }
 
-    bool Triangle::setSize(Height h, Length l)
+    bool Triangle::setSizePolicy(Height h, Length l)
     {
-        if (h != l)
-        {
-            return false;
-        }
-
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.h = h;
-        attributes.size.l = l;
-
-        return true;
-    }
-
-    bool Triangle::setHeight(Height h)
-    {
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.h = h;
-        attributes.size.l = h;
-        return true;
-    }
-
-    bool Triangle::setLength(Length l)
-    {
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.h = l;
-        attributes.size.l = l;
-
-        return true;
+        return (h == l);
     }
 
     void Triangle::setPixMap()

@@ -15,45 +15,6 @@ namespace shapes
         setPixMap();
     }
 
-    bool Rectangle::setSize(Length l, Height h)
-    {
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.h = h;
-        attributes.size.l = l;
-        pixMap = PixMap(attributes.size);
-        setPixMap();
-
-        return true;
-    }
-
-    bool Rectangle::setHeight(Height h)
-    {
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.h = h;
-        pixMap = PixMap(attributes.size);
-        setPixMap();
-        return true;
-    }
-
-    bool Rectangle::setLength(Length l)
-    {
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.l = l;
-        pixMap = PixMap(attributes.size);
-        setPixMap();
-
-        return true;
-    }
-
     void Rectangle::setPixMap()
     {
         for (int y = 0; y < attributes.size.h; y++)

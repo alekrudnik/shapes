@@ -1,4 +1,5 @@
 #include "shape.hpp"
+#include "abstract_canvas.hpp"
 
 namespace shapes
 {
@@ -11,6 +12,12 @@ namespace shapes
         
         for (auto const &i : colliders)
         {
+            // check if self
+            if(getHandle() == i->getHandle())
+            {
+                continue;
+            }
+
             if (checkCollision(i))
             {
                 return true;
@@ -50,6 +57,37 @@ namespace shapes
             return false;
         }
 
+        return true;
+    }
+
+    bool Shape::setSize(Length l, Height h)
+    {
+        auto sizeCopy = attributes.size;
+        auto applyChanges = [this]()
+        {
+            setBoundingBox();
+            pixMap = PixMap(attributes.size);
+            setPixMap();
+        };
+        if(!setSizePolicy(l,h))
+        {
+            return false;
+        }
+        attributes.size.h = h;
+        attributes.size.l = l;
+        applyChanges();
+        if (parent && checkCollision(parent->GetShapes(), parent->getSize()))
+        {
+            attributes.size = sizeCopy;
+            applyChanges();
+            return false;
+        }
+
+        return true;
+    }
+
+    bool Shape::setSizePolicy(Length l, Height h)
+    {
         return true;
     }
 }

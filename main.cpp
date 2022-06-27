@@ -65,7 +65,19 @@ int main(int, char **)
     canvas.getPixMap().print();
 
     //select, modify
-    rect->setSize(20,20);
+    if(!rect->setSize(20,20))
+    {
+        std::cout << "Test Failed" << std::endl;
+        return -1;
+    }
+    // this should fail, as it is overlapping
+    if(rect->setSize(21,20))
+    {
+        std::cout << "Test Failed" << std::endl;
+        return -1;
+    }
+    triang->setColor(3);
+
 
     canvas.update();
     canvas.getPixMap().print();

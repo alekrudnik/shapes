@@ -14,9 +14,7 @@ namespace shapes
 
         ~Circle() = default;
 
-        bool setSize(Height h, Length l) override;
-        bool setHeight(Height h) override;
-        bool setLength(Length l) override;
+        bool setSizePolicy(Height h, Length l) override;
 
     protected:
         void setPixMap() override;

@@ -13,44 +13,9 @@ namespace shapes
         setPixMap();
     }
 
-    bool Circle::setSize(Height h, Length l)
+    bool Circle::setSizePolicy(Height h, Length l)
     {
-        if (h != l)
-        {
-            return false;
-        }
-
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.h = h;
-        attributes.size.l = l;
-
-        return true;
-    }
-
-    bool Circle::setHeight(Height h)
-    {
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.h = h;
-        attributes.size.l = h;
-        return true;
-    }
-
-    bool Circle::setLength(Length l)
-    {
-        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
-        {
-            return false;
-        }
-        attributes.size.h = l;
-        attributes.size.l = l;
-
-        return true;
+        return (h == l);
     }
 
     void Circle::setPixMap()

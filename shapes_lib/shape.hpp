@@ -33,6 +33,8 @@ namespace shapes
             return attributes.position;
         }
 
+        bool setSize(Length l, Height h) override;
+        virtual bool setSizePolicy(Length l, Height h);
         Size getSize() const override
         {
             return attributes.size;
@@ -84,8 +86,8 @@ namespace shapes
         {
             boundingBox.xMin = attributes.position.x;
             boundingBox.yMin = attributes.position.y;
-            boundingBox.xMax = attributes.position.x + attributes.size.l;
-            boundingBox.yMax = attributes.position.y + attributes.size.h;
+            boundingBox.xMax = attributes.position.x + attributes.size.l-1;
+            boundingBox.yMax = attributes.position.y + attributes.size.h-1;
         }
         BoundingBox boundingBox;
 
