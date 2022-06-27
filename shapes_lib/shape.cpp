@@ -2,14 +2,28 @@
 
 namespace shapes
 {
-    bool Shape::checkCollision(const std::list<AbstractShapePtr> &colliders)
+    bool Shape::checkCollision(const std::list<AbstractShapePtr> &colliders, const Size &margins)
     {
+        if(checkCollision(margins))
+        {
+            return true;
+        }
+        
         for (auto const &i : colliders)
         {
             if (checkCollision(i))
             {
                 return true;
             }
+        }
+        return false;
+    }
+
+    bool Shape::checkCollision(const Size &margins)
+    {
+        if(boundingBox.xMax >= margins.l || boundingBox.yMax >= margins.h)
+        {
+            return true;
         }
         return false;
     }

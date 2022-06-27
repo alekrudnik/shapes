@@ -1,9 +1,11 @@
+#include <common.hpp>
 #include <canvas.hpp>
 #include <circle.hpp>
 #include <rectangle.hpp>
 #include <triangle.hpp>
 
 #include <iostream>
+#include <vector>
 
 int main(int, char **)
 {
@@ -21,31 +23,73 @@ int main(int, char **)
     auto triang2 = Triangle::create({25, 5}, 10, 7);
     auto circ2 = Circle::create({45, 45}, 10, 9);
 
+    OptionalShapeHandle rectHandle = canvas.addShape(rect);
     // This should be added as it is overlapping
-    if (!canvas.addShape(std::move(rect)))
+    if (!rectHandle)
     {
         std::cout << "Test Failed" << std::endl;
+        return -1;
     }
-    if (!canvas.addShape(std::move(triang)))
+
+    OptionalShapeHandle triangHandle = canvas.addShape(triang);
+    if (!triangHandle)
     {
         std::cout << "Test Failed" << std::endl;
+        return -1;
     }
-    if (!canvas.addShape(std::move(circ)))
+
+    OptionalShapeHandle circHandle = canvas.addShape(circ);
+    if (!circHandle)
     {
         std::cout << "Test Failed" << std::endl;
+        return -1;
     }
 
     // This should be NOT added as it is overlapping
-    if (canvas.addShape(std::move(rect2)))
+    if (canvas.addShape(rect2))
     {
         std::cout << "Test Failed" << std::endl;
+        return -1;
     }
-    if (canvas.addShape(std::move(triang2)))
+    if (canvas.addShape(triang2))
     {
         std::cout << "Test Failed" << std::endl;
+        return -1;
     }
-    if (canvas.addShape(std::move(circ2)))
+    if (canvas.addShape(circ2))
     {
         std::cout << "Test Failed" << std::endl;
+        return -1;
     }
+    canvas.update();
+    canvas.getPixMap().print();
+
+    //select, modify
+    rect->setSize(20,20);
+
+    canvas.update();
+    canvas.getPixMap().print();
+
+    const auto& shapes = canvas.GetShapes();
+
+    // get all handles and remove all shapes
+    std::vector<ShapeHandle> handle_list;
+    for (auto &shape : shapes)
+    {
+        if (auto handle = shape->getHandle())
+        {
+            handle_list.emplace_back(*handle);
+        }
+    }
+    for (auto handle : handle_list)
+    {
+        if (!canvas.removeShape(handle))
+        {
+            std::cout << "Test Failed" << std::endl;
+            return -1;
+        }
+    }
+
+    canvas.update();
+    canvas.getPixMap().print();
 }

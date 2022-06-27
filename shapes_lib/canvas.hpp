@@ -15,22 +15,34 @@ namespace shapes
         Canvas(Height h, Length l) : pixMap(h,l)
         {} 
 
-        ShapeHandle addShape(AbstractShapePtr shape) override;
+        OptionalShapeHandle addShape(AbstractShapePtr shape) override;
         bool removeShape(ShapeHandle handle) override;
 
-        const std::list<AbstractShapePtr>& GetShapes() const override
+        const std::list<AbstractShapePtr>& GetShapes() override
         {
             return shapes;
         }
 
-        static Handle generateHandle()
+        static ShapeHandle generateHandle()
         {
             return ++handleGenerator;
+        }
+
+        Size getSize() const override
+        {
+            return pixMap.getSize();
+        }
+
+        void update() override;
+
+        const PixMap & getPixMap() const
+        {
+            return pixMap;
         }
 
         private:
         PixMap pixMap;
         std::list<AbstractShapePtr> shapes;
-        static Handle handleGenerator;
+        static ShapeHandle handleGenerator;
     };
 }

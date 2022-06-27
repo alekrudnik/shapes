@@ -20,7 +20,7 @@ namespace shapes
             return false;
         }
 
-        if (parent && !checkCollision(parent->GetShapes()))
+        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
         {
             return false;
         }
@@ -32,8 +32,7 @@ namespace shapes
 
     bool Circle::setHeight(Height h)
     {
-        // TODO: validate h
-        if (parent && !checkCollision(parent->GetShapes()))
+        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
         {
             return false;
         }
@@ -44,8 +43,7 @@ namespace shapes
 
     bool Circle::setLength(Length l)
     {
-        // TODO: validate l
-        if (parent && !checkCollision(parent->GetShapes()))
+        if (parent && !checkCollision(parent->GetShapes(), parent->getSize()))
         {
             return false;
         }

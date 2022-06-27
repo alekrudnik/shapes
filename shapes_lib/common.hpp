@@ -34,7 +34,7 @@ namespace shapes
         YCoord yMax = 0;
     };
 
-    using Handle = uint32_t;
-    using ShapeHandle = std::optional<Handle>;
+    using ShapeHandle = uint32_t;
+    using OptionalShapeHandle = std::optional<ShapeHandle>;
     
 }

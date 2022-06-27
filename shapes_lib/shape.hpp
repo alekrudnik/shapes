@@ -14,7 +14,8 @@ namespace shapes
 
         virtual ~Shape() = default;
 
-        const PixMap& getPixMap() override{
+        const PixMap &getPixMap() override
+        {
             return pixMap;
         }
 
@@ -43,18 +44,24 @@ namespace shapes
             return true;
         }
 
-        ShapeHandle getHandle() const override{
+        void setHandle(ShapeHandle handle_) override
+        {
+            handle = handle_;
+        }
+
+        OptionalShapeHandle getHandle() const override
+        {
             return handle;
         }
 
-        bool checkCollision(const std::list<AbstractShapePtr> &colliders) override;
-        
-        void setParent (AbstractCanvas* canvas) override
+        bool checkCollision(const std::list<AbstractShapePtr> &colliders, const Size &size) override;
+
+        void setParent(AbstractCanvas *canvas) override
         {
             parent = canvas;
         }
 
-        const BoundingBox& getBoundingBox() const override
+        const BoundingBox &getBoundingBox() const override
         {
             return boundingBox;
         }
@@ -67,8 +74,8 @@ namespace shapes
             Color color = 0;
         } attributes;
 
-        ShapeHandle handle;
-        AbstractCanvas* parent = nullptr;
+        OptionalShapeHandle handle;
+        AbstractCanvas *parent = nullptr;
 
         virtual void setPixMap() = 0;
         PixMap pixMap;
@@ -81,8 +88,9 @@ namespace shapes
             boundingBox.yMax = attributes.position.y + attributes.size.h;
         }
         BoundingBox boundingBox;
-    
-        bool checkCollision(const AbstractShapePtr& otherShape);
+
+        bool checkCollision(const AbstractShapePtr &otherShape);
+        bool checkCollision(const Size &size);
     };
 
 }

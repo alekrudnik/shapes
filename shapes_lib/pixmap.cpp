@@ -6,10 +6,21 @@ namespace shapes
 {
     PixMap::PixMap(Height h, Length l) : size{h, l}
     {
-        array = std::make_unique<Color[]>(l*h);
+        array = new Color[l*h];
         
+        clear();
+
         xMax = l - 1;
         yMax = h - 1;
+    }
+    PixMap::~PixMap()
+    {
+        delete array;
+    }
+
+    void PixMap::clear()
+    {
+        memset(array, 0, size.h*size.l);
     }
 
     const Color &PixMap::at(XCoord x, YCoord y) const
@@ -25,7 +36,7 @@ namespace shapes
         return const_cast<Color &>(const_cast<const PixMap *>(this)->at(x, y));
     }
 
-    void PixMap::print()
+    void PixMap::print() const
     {
         for (size_t i = 0; i < size.h; i++)
         {

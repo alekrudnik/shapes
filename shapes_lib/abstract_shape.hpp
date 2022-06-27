@@ -10,7 +10,7 @@
 namespace shapes
 {
     class AbstractShape;
-    using AbstractShapePtr = std::unique_ptr<AbstractShape>;
+    using AbstractShapePtr = std::shared_ptr<AbstractShape>;
 
     class AbstractCanvas;
     
@@ -33,11 +33,12 @@ namespace shapes
         virtual Point getPosition() const = 0;
         virtual bool move(Point point) = 0;
 
-        virtual ShapeHandle getHandle() const = 0;
+        virtual void setHandle(ShapeHandle handle_) = 0;
+        virtual OptionalShapeHandle getHandle() const = 0;
 
         virtual const BoundingBox& getBoundingBox() const = 0;
 
-        virtual bool checkCollision(const std::list<AbstractShapePtr> &colliders) = 0;
+        virtual bool checkCollision(const std::list<AbstractShapePtr> &colliders, const Size &size) = 0;
 
         virtual void setParent (AbstractCanvas* canvas) = 0;
 
