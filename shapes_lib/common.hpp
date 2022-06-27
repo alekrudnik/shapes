@@ -10,8 +10,8 @@ namespace shapes
     using Length = Coord;
     struct Size
     {
-        Height h = 0;
         Length l = 0;
+        Height h = 0;
     };
 
     using XCoord = Coord;

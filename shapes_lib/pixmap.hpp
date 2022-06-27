@@ -17,8 +17,8 @@ namespace shapes
         YCoord yMax = 0;
 
     public:
-        PixMap(Size size) : PixMap(size.h, size.l) {}
-        PixMap(Height h, Length l);
+        PixMap(Size size) : PixMap(size.l, size.h) {}
+        PixMap(Height l, Length h);
 
         virtual ~PixMap() = default;
 

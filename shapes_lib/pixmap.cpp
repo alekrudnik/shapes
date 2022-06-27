@@ -35,6 +35,7 @@ namespace shapes
             }
             std::cout << std::endl;
         }
+        std::cout << std::endl;
     }
 
     bool PixMap::set(Point point, const PixMap& pixMap)
