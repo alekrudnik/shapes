@@ -38,7 +38,7 @@ namespace shapes
         std::cout << std::endl;
     }
 
-    bool PixMap::set(Point point, const PixMap& pixMap)
+    bool PixMap::modify(Point point, const PixMap& pixMap,  Operation op)
     {
         auto pixXMax = point.x + pixMap.size.l - 1;
         auto pixYMax = point.y + pixMap.size.h - 1;
@@ -54,15 +54,20 @@ namespace shapes
                 const auto color = pixMap.at(x, y);
                 if(color != 0)
                 {
-                    at(x+point.x, y+point.y) = color;
+                    at(x+point.x, y+point.y) = op == Operation::Set ? color : 0;
                 }
             }
         }
         return true;
     }
+
+    bool PixMap::set(Point point, const PixMap& pixMap)
+    {
+        return modify(point, pixMap, Operation::Set);
+    }
         
     bool PixMap::unset(Point point, const PixMap &pixMap)
     {
-        return false;
+        return modify(point, pixMap, Operation::Unset);
     }
 }

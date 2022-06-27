@@ -1,5 +1,7 @@
 #include "rectangle.hpp"
 
+#include "abstract_canvas.hpp"
+
 namespace shapes
 {
     AbstractShapePtr Rectangle::create(Point position, Size size, Color color)
@@ -13,10 +15,10 @@ namespace shapes
         setPixMap();
     }
 
-    bool Rectangle::setSize(Height h, Length l, const std::list<AbstractShapePtr> &colliders)
+    bool Rectangle::setSize(Height h, Length l)
     {
         // TODO: validate h and l ?
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }
@@ -26,10 +28,10 @@ namespace shapes
         return true;
     }
 
-    bool Rectangle::setHeight(Height h, const std::list<AbstractShapePtr> &colliders)
+    bool Rectangle::setHeight(Height h)
     {
         // TODO: validate h
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }
@@ -37,10 +39,10 @@ namespace shapes
         return true;
     }
 
-    bool Rectangle::setLength(Length l, const std::list<AbstractShapePtr> &colliders)
+    bool Rectangle::setLength(Length l)
     {
         // TODO: validate l
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }

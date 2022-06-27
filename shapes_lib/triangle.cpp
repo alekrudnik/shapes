@@ -1,5 +1,7 @@
 #include "triangle.hpp"
 
+#include "abstract_canvas.hpp"
+
 namespace shapes
 {
     AbstractShapePtr Triangle::create(Point position, Height height, Color color)
@@ -13,14 +15,14 @@ namespace shapes
         setPixMap();
     }
 
-    bool Triangle::setSize(Height h, Length l, const std::list<AbstractShapePtr> &colliders)
+    bool Triangle::setSize(Height h, Length l)
     {
         if (h != l)
         {
             return false;
         }
 
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }
@@ -30,10 +32,10 @@ namespace shapes
         return true;
     }
 
-    bool Triangle::setHeight(Height h, const std::list<AbstractShapePtr> &colliders)
+    bool Triangle::setHeight(Height h)
     {
         // TODO: validate h
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }
@@ -42,10 +44,10 @@ namespace shapes
         return true;
     }
 
-    bool Triangle::setLength(Length l, const std::list<AbstractShapePtr> &colliders)
+    bool Triangle::setLength(Length l)
     {
         // TODO: validate l
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }

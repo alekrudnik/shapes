@@ -37,10 +37,26 @@ namespace shapes
             return attributes.size;
         }
 
-        bool move(Point position, const std::list<AbstractShapePtr> &colliders) override
+        bool move(Point position) override
         {
             // TODO:: do
             return true;
+        }
+
+        ShapeHandle getHandle() const override{
+            return handle;
+        }
+
+        bool checkCollision(const std::list<AbstractShapePtr> &colliders) override;
+        
+        void setParent (AbstractCanvas* canvas) override
+        {
+            parent = canvas;
+        }
+
+        const BoundingBox& getBoundingBox() const override
+        {
+            return boundingBox;
         }
 
     protected:
@@ -50,6 +66,9 @@ namespace shapes
             Size size;
             Color color = 0;
         } attributes;
+
+        ShapeHandle handle;
+        AbstractCanvas* parent = nullptr;
 
         virtual void setPixMap() = 0;
         PixMap pixMap;
@@ -62,23 +81,8 @@ namespace shapes
             boundingBox.yMax = attributes.position.y + attributes.size.h;
         }
         BoundingBox boundingBox;
-
-        bool checkCollision(const std::list<AbstractShapePtr> &colliders)
-        {
-            for(auto const& i : colliders)
-            {
-               if(checkCollision(i))
-               {
-                return true;
-               }
-            }
-            return false;
-        }
-
-        bool checkCollision(const AbstractShapePtr& otherShape)
-        {
-            return true;
-        }
+    
+        bool checkCollision(const AbstractShapePtr& otherShape);
     };
 
 }

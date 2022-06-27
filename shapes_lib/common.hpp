@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <optional>
 
 namespace shapes
 {
@@ -33,4 +34,7 @@ namespace shapes
         YCoord yMax = 0;
     };
 
+    using Handle = uint32_t;
+    using ShapeHandle = std::optional<Handle>;
+    
 }

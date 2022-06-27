@@ -12,9 +12,9 @@ namespace shapes
 
         ~Rectangle() = default;
 
-        bool setSize(Height h, Length l, const std::list<AbstractShapePtr> &colliders) override;
-        bool setHeight(Height h, const std::list<AbstractShapePtr> &colliders) override;
-        bool setLength(Length l, const std::list<AbstractShapePtr> &colliders) override;
+        bool setSize(Height h, Length l) override;
+        bool setHeight(Height h) override;
+        bool setLength(Length l) override;
 
         protected:
         void setPixMap() override;

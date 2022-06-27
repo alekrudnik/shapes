@@ -34,5 +34,13 @@ namespace shapes
         bool unset(Point point, const PixMap &pixMap);
 
         void print();
+
+    private:
+        enum class Operation
+        {
+            Set,
+            Unset
+        };
+        bool modify(Point point, const PixMap &pixMap, Operation op);
     };
 }

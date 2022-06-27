@@ -13,14 +13,14 @@ namespace shapes
         setPixMap();
     }
 
-    bool Circle::setSize(Height h, Length l, const std::list<AbstractShapePtr> &colliders)
+    bool Circle::setSize(Height h, Length l)
     {
         if (h != l)
         {
             return false;
         }
 
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }
@@ -30,10 +30,10 @@ namespace shapes
         return true;
     }
 
-    bool Circle::setHeight(Height h, const std::list<AbstractShapePtr> &colliders)
+    bool Circle::setHeight(Height h)
     {
         // TODO: validate h
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }
@@ -42,10 +42,10 @@ namespace shapes
         return true;
     }
 
-    bool Circle::setLength(Length l, const std::list<AbstractShapePtr> &colliders)
+    bool Circle::setLength(Length l)
     {
         // TODO: validate l
-        if (!checkCollision(colliders))
+        if (parent && !checkCollision(parent->GetShapes()))
         {
             return false;
         }
