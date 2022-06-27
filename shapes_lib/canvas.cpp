@@ -44,11 +44,9 @@ namespace shapes
     void Canvas::update()
     {
         pixMap.clear();
-        pixMap.print();
         for (const auto &shape : shapes)
         {
             pixMap.set(shape->getPosition(), shape->getPixMap());
         }
-        pixMap.print();
     }
 }

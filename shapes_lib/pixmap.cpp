@@ -21,7 +21,7 @@ namespace shapes
 
     void PixMap::clear()
     {
-        std::fill(array, array + size.l*size.h, 1);
+        std::fill(array, array + size.l*size.h, '\0');
     }
 
     const Color &PixMap::at(XCoord x, YCoord y) const

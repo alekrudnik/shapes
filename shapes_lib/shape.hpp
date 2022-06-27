@@ -76,6 +76,7 @@ namespace shapes
         OptionalShapeHandle handle;
         AbstractCanvas *parent = nullptr;
 
+        // sets internal pix map. Must be implemented in derived classes
         virtual void setPixMap() = 0;
         PixMap pixMap;
 

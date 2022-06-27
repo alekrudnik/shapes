@@ -84,6 +84,13 @@ int main(int, char **)
         return -1;
     }
 
+    // should faile as there will be collision
+    if(circ->move({10,5}))
+    {
+        std::cout << "Test Failed" << std::endl;
+        return -1;
+    }
+
     canvas.update();
     canvas.getPixMap().print();
 
