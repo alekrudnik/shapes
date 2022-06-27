@@ -26,6 +26,7 @@ namespace shapes
         void setColor(Color color) override
         {
             attributes.color = color;
+            setPixMap();
         }
 
         Point getPosition() const override
